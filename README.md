@@ -161,19 +161,95 @@ All notebooks, excluding the data_collection notebook, can be run from top to bo
 
 <pre>
 ├── README.md
-├── archive
-│   ├── archive_functions.py
+├── applying_classifier
+│   ├── location
+│   │   ├── data
+│   │   │   ├── data_prep.ipynb
+│   │   │   ├── geographic_plotting_data.csv
+│   │   │   ├── location_functions.py
+│   │   │   ├── raw_data
+│   │   │   │   ├── date_tweets_day_1.csv
+│   │   │   │   ├── date_tweets_day_2.csv
+│   │   │   │   ├── date_tweets_day_3.csv
+│   │   │   │   ├── date_tweets_day_4.csv
+│   │   │   │   └── date_tweets_day_5.csv
+│   │   │   └── us-states.json
+│   │   └── geographic_analysis.ipynb
+│   └── time_series
+│       ├── data
+│       │   ├── data_prep.ipynb
+│       │   ├── raw_data
+│       │   │   ├── daily_tweets
+│       │   │   │   ├── collecting_daily_tweets.ipynb
+│       │   │   │   ├── tweets_2010_1.csv
+│       │   │   │   ├── tweets_2010_2.csv
+│       │   │   │   ├── tweets_2010_3.csv
+│       │   │   │   ├── tweets_2010_4.csv
+│       │   │   │   ├── tweets_2010_5.csv
+│       │   │   │   ├── tweets_2011_1.csv
+│       │   │   │   ├── tweets_2011_2.csv
+│       │   │   │   ├── tweets_2011_3.csv
+│       │   │   │   ├── tweets_2011_4.csv
+│       │   │   │   ├── tweets_2011_5.csv
+│       │   │   │   ├── tweets_2012_1.csv
+│       │   │   │   ├── tweets_2012_2.csv
+│       │   │   │   ├── tweets_2012_3.csv
+│       │   │   │   ├── tweets_2012_4.csv
+│       │   │   │   ├── tweets_2012_5.csv
+│       │   │   │   ├── tweets_2013_1.csv
+│       │   │   │   ├── tweets_2013_2.csv
+│       │   │   │   ├── tweets_2013_3.csv
+│       │   │   │   ├── tweets_2013_4.csv
+│       │   │   │   ├── tweets_2013_5.csv
+│       │   │   │   ├── tweets_2014_1.csv
+│       │   │   │   ├── tweets_2014_2.csv
+│       │   │   │   ├── tweets_2014_3.csv
+│       │   │   │   ├── tweets_2014_4.csv
+│       │   │   │   ├── tweets_2014_5.csv
+│       │   │   │   ├── tweets_2015_1.csv
+│       │   │   │   ├── tweets_2015_2.csv
+│       │   │   │   ├── tweets_2015_3.csv
+│       │   │   │   ├── tweets_2015_4.csv
+│       │   │   │   ├── tweets_2015_5.csv
+│       │   │   │   ├── tweets_2016_1.csv
+│       │   │   │   ├── tweets_2016_2.csv
+│       │   │   │   ├── tweets_2016_3.csv
+│       │   │   │   ├── tweets_2016_4.csv
+│       │   │   │   ├── tweets_2016_5.csv
+│       │   │   │   ├── tweets_2017_1.csv
+│       │   │   │   ├── tweets_2017_2.csv
+│       │   │   │   ├── tweets_2017_3.csv
+│       │   │   │   ├── tweets_2017_4.csv
+│       │   │   │   ├── tweets_2017_5.csv
+│       │   │   │   ├── tweets_2018_1.csv
+│       │   │   │   ├── tweets_2018_2.csv
+│       │   │   │   ├── tweets_2018_3.csv
+│       │   │   │   ├── tweets_2018_4.csv
+│       │   │   │   ├── tweets_2018_5.csv
+│       │   │   │   ├── tweets_2019_1.csv
+│       │   │   │   ├── tweets_2019_2.csv
+│       │   │   │   ├── tweets_2019_3.csv
+│       │   │   │   ├── tweets_2019_4.csv
+│       │   │   │   ├── tweets_2019_5.csv
+│       │   │   │   ├── tweets_2020_1.csv
+│       │   │   │   ├── tweets_2020_2.csv
+│       │   │   │   ├── tweets_2020_3.csv
+│       │   │   │   ├── tweets_2020_4.csv
+│       │   │   │   ├── tweets_2020_5.csv
+│       │   │   │   ├── twitter_dates_since.csv
+│       │   │   │   └── twitter_dates_until.csv
+│       │   │   └── temp_data.csv
+│       │   ├── time_series_daily_data.csv
+│       │   └── time_series_functions.py
+│       └── timeseries_analysis.ipynb
+├── building_classifier
 │   ├── baseline_model.ipynb
-│   ├── data_collection
-│   │   ├── data_collection.ipynb
-│   │   ├── date_tweets
-│   │   ├── location_tweets
-│   │   │   ├── date_tweets_day_1.csv
-│   │   │   ├── date_tweets_day_2.csv
-│   │   │   ├── date_tweets_day_3.csv
-│   │   │   └── date_tweets_day_4.csv
+│   ├── best_model.pickle
+│   ├── building_classifier_functions.py
+│   ├── data
 │   │   ├── prepared_twitter_sentiment_data.csv
 │   │   └── twitter_sentiment_data.csv
+│   ├── data_understanding.ipynb
 │   ├── eda.ipynb
 │   ├── feature_engineering_and_cleaning.ipynb
 │   └── modeling.ipynb
@@ -190,10 +266,12 @@ All notebooks, excluding the data_collection notebook, can be run from top to bo
 │   ├── colon.png
 │   ├── cover_image_us.jpeg
 │   ├── cover_image_us2.jpeg
+│   ├── daily_time_series.png
 │   ├── democratic_party.png
 │   ├── dollar_sign.png
+│   ├── edf_score_map.png
 │   ├── exclamation_point.png
-│   ├── final_confusion_matrix.png
+│   ├── final_model_confusion.png
 │   ├── hashtag_present.png
 │   ├── hyperlink_present.png
 │   ├── mention_present.png
