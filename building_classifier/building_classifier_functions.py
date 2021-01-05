@@ -15,7 +15,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 
-data = pd.read_csv('data_collection/twitter_sentiment_data.csv')
+data = pd.read_csv('data/twitter_sentiment_data.csv')
 class_labels = ['Anti Man-Made','Neutral','Man-Made','News']
 
 def lemmatize_tweet(data):
