@@ -6,11 +6,11 @@
 
 ## Summary
 
-After gathering a base of data from [Kaggle](https://www.kaggle.com/edqian/twitter-climate-change-sentiment-dataset), I used natural language processing to analyze attributes of the tweets in an attempt to classify them as either -1 (tweet indicates that climate change is not man-made), 0 (tweet is neutral on whether or not climate change is man-made), 1 (tweet indicates that climate change is man-made), or 2 (tweet is for news). The focus, however, was on the -1 and 1 class, but the addition of the neutral and news classes would only make the classifier more accurate in the long-run.
+After gathering a base of data from [Kaggle](https://www.kaggle.com/edqian/twitter-climate-change-sentiment-dataset), I used natural language processing to analyze attributes of the tweets in the dataset in order to to classify them as either -1 (tweet indicates that climate change is not man-made), 0 (tweet is neutral on whether or not climate change is man-made), 1 (tweet indicates that climate change is man-made), or 2 (tweet is for news). The focus, however, was on the 'Anti' and 'Man' classes. That said, the addition of the 'Neutral' and 'News' classes serve to make the classifier more accurate. Therefore, the classifier will be used to predict on all four classes. 
 
 Throught the process of text manipulation and exploration, I was able to better understand the attributes that make up each class of tweets. Based off of findings in that step, I was able to create features to help in the predictive modeling process. Once created, I trained predictive models in an attempt to successfully classify each given tweet in one of the four categories listed above. 
 
-After iterative modeling, I created a model using TFIDF Vectorization and logistic regression that yielded the following f1 scores: 
+After iterative modeling, I created a model using TF-IDF Vectorization and logistic regression that yielded the following f1 scores: 
 
 <table>
 <tr>
@@ -30,7 +30,7 @@ After iterative modeling, I created a model using TFIDF Vectorization and logist
 </tr>
 </table>
 
-From here, the model was deployed for time series and geographic analysis.
+Using the above f1 scores, the classifier was applied. In this application, both the 'Neutral' and 'News' classes were given a score of 0. The values used in the time series and geographic analysis were comprised by taking the average of 'Anti' and 'Man' scores for either a given state or time period. 
 
 ## Business Problem
 
@@ -42,31 +42,26 @@ With a central focus of climate change action, The Environmental Defense Fund (E
 2. Engineer features based of the findings during exploration
 3. Build a classification model to successfully predict the climate change class of a tweet 
 4. Do time series analysis to find out when the EDF would yield the best results moving forward
-5. Do geographic analysis to find out where the EDF would yield the best results moving forwardcla
+5. Do geographic analysis to find out where the EDF would yield the best results moving forward
 
 ## Building the Classifier
 
 ### The Data
 
-Below, there are three key findings listed. These findings, in addition to a few others, can be found in the [eda notebook](./building_classifier/eda.ipynb). These findings were all made into features for modeling, which you can see in detail [here](./building_classifier/feature_engineering_and_cleaning.ipynb)
+The data exploration process yielded many differences that can be seen between the classes. To see these differences, check out the notebook comprising the whole exploration process [here](./building_classifier/eda.ipynb). Furthermore, you can see how this analysis was translated into features [here](./building_classifier/feature_engineering_and_cleaning.ipynb). But, because the engineered features ended up producing a worse model, we will not go into detail on those features here. 
+
+Instead, the best model was produced from unigram tf-idf vectorization without the engineered features. Therefore, the data finding that proved to be the most impactful was the class imbalance. 
 
 #### 1. Class Imbalance
 
-The first thing to note about the data was the large class imbalance, especially between the ultimate target classes ('Man' and 'Anti'). Because of this, accuracy was out of the question for the performance metric of the models. Instead, this finding emphasized the need to use f1 score to test the model's ability to differentiate between classes with a high level of representation imbalance. 
+The class imbalance can quickly be understood as stark. With a focus on the 'Man' and 'Anti' classes, this margin of class imbalance is at its highest. Because of this, accuracy was out of the question for the performance metric of the models. Instead, this finding emphasized the need to use f1 score to test the model's ability to differentiate between classes. Check ou the distribution below:
 
 ![cover_image.jpeg](./images/class_imbalance.png
 )
 
-#### 2. Punctuation
-
-The data exploration process showed that punctuation was a marker that could help the model differentiate between the classes. The difference between classes was most notable in the presence of exclamation points  seen by the graph below:
-
-![cover_image.jpeg](./images/exclamation_point.png
-)
-
 ### Modeling
 
-Given the business problem, I chose to use f1 score as my main metric, while still accounting for accuracy. I did this because the biggest qualification of the success of the classifier is its ability to differentiate between the classes. To find the best model, I modeled using TFIDF Vectorizer as well as Doc2Vec. 
+In order to find the best f1 score through modeling, I implemented TF-IDF Vectorizer as well as Doc2Vec. After modeling with both tactics, the best performing model was tuned to optimize its f1 score for application. 
 
 #### Best Model
 
@@ -80,10 +75,10 @@ The logistic regression TF-IDF model without added features performed the best o
 <td>
 
 <ul>
-<li> <b>(-1) Anti Man-Made</b>: 0.61</li>
+<li> <b>(-1) Anti Man-Made</b>: 0.57</li>
 <li> <b>(0) Neutral</b>: 0.52</li>
 <li> <b>(1) Man-Made</b>: 0.79</li>
-<li> <b>(2) News</b>: 0.73</li>
+<li> <b>(2) News</b>: 0.71</li>
 </ul>
 
 </td>
@@ -99,7 +94,7 @@ Here is the confusion matrix for this model:
 
 ### Time Series Analysis 
 
-The objective is to find the time of year at which the Environmental Defense Fund (EDF) will receive the highest level of donations relative to advertising and promotional efforts. The assumption for this analysis is that donations will rise proportionately with climate change sentiment. Therefore, the EDF will want to do the most advertising during months with the highest climate change sentiment and the least advertising during months with the lowest climate change sentiment.
+The objective here is to find the time of year at which the Environmental Defense Fund (EDF) will receive the highest level of donations relative to advertising and promotional efforts. The assumption for this analysis is that donations will rise proportionately with climate change sentiment. Therefore, the EDF will want to do the most advertising during months with the highest climate change sentiment and the least advertising during months with the lowest climate change sentiment.
 
 #### Findings 
 
@@ -110,14 +105,14 @@ Time series analysis indicated that climate change sentiment goes down during th
 
 ### Geographic Analysis
 
-The location breakdown is by state. The objective of this notebook is to find out the states in which the Environmental Defense Fund (EDF) will receive the highest level of donations relative to advertising and promotional efforts.
+The location breakdown is by state. The objective of this notebook is to find out the states in which the Environmental Defense Fund (EDF) will receive the highest level of donations relative to advertising and promotional efforts. The assumption here, just like for the time series analysis, is that donations per state will rise proportionately with climate change sentiment.
 
 #### Findings
 
 ![cover_image.jpeg](./images/edf_score_map.png
 )
 
-The above graph of the US shows the relative breakdown of a custom composite score. This score is a combination of climate change sentiment, average income, cost of living and charitability rating. The top 5 states according to this score are:
+The above graph of the US shows the relative breakdown of a custom composite score. This score is a combination of climate change sentiment, average income, cost of living and charitability rating for each state. The top 5 scoring states are:
 
 1. Minnesota
 2. Maryland
