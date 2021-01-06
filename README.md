@@ -1,4 +1,4 @@
-# Tweet Climate Change Classifier
+# Climate Change Sentiment Analysis
 
 <img src="https://eoimages.gsfc.nasa.gov/images/imagerecords/83000/83624/temperature_nca-1991-2012_lrg.jpg" width="1000" height="600">
 
@@ -52,7 +52,7 @@ The data exploration process yielded many differences that can be seen between t
 
 Instead, the best model was produced from unigram tf-idf vectorization without the engineered features. Therefore, the data finding that proved to be the most impactful was the class imbalance. 
 
-#### 1. Class Imbalance
+#### Class Imbalance
 
 The class imbalance can quickly be understood as stark. With a focus on the 'Man' and 'Anti' classes, this margin of class imbalance is at its highest. Because of this, accuracy was out of the question for the performance metric of the models. Instead, this finding emphasized the need to use f1 score to test the model's ability to differentiate between classes. Check ou the distribution below:
 
